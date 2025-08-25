@@ -1,0 +1,623 @@
+﻿{% extends "main/main.html" %}
+{% load static %}
+{% block content %}
+
+    <!-- Banner Section -->
+    <section class="banner-section" id="home">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="banner-content">
+                        <h1>Transforming Ideas Into Digital Solutions</h1>
+                        <p>Dative Technologies provides comprehensive IT solutions including software development, AI integration, network services, and research solutions.</p>
+                        <div class="banner-buttons">
+                            <a href="#services" class="btn btn-primary me-3">Our Services</a>
+                            <a href="#contact" class="btn btn-outline-light">Get In Touch</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <img src="{% static 'assets/img/logo/dative.png' %}" alt="Dative Technologies" class="img-fluid">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services-section section-padding" id="services">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Services</h2>
+                <p>Comprehensive IT solutions tailored to meet your business needs</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <h4>Software Development</h4>
+                        <p>Custom software solutions, desktop applications, and business process automation tailored to your specific requirements.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <h4>Web Development</h4>
+                        <p>Responsive, modern websites and web applications with cutting-edge technologies and user-friendly interfaces.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-brain"></i>
+                        </div>
+                        <h4>AI & Machine Learning</h4>
+                        <p>Intelligent solutions including predictive analytics, computer vision, and natural language processing applications.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-mobile-alt"></i>
+                        </div>
+                        <h4>Mobile App Development</h4>
+                        <p>Native and cross-platform mobile applications for iOS and Android with seamless performance and intuitive UX.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <h4>Network Solutions</h4>
+                        <p>Network installation, configuration, troubleshooting and security for businesses of all sizes.</p>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="service-card">
+                        <div class="service-icon">
+                            <i class="fas fa-flask"></i>
+                        </div>
+                        <h4>Research & Development</h4>
+                        <p>Academic and commercial research papers with practical implementations and data analysis.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="about-section section-padding" id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Dative Technologies</h2>
+                <p>Learn about our mission, vision, and expertise</p>
+            </div>
+            
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <div class="about-img">
+                        <img src="{% static 'assets/img/logo/dative2.png' %}" alt="About Dative Technologies" class="img-fluid">
+                    </div>
+                </div>
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <h3>Transforming Businesses Through Technology</h3>
+                        <p>Dative Technologies is a full-service IT solutions provider based in Tanzania, specializing in transforming innovative ideas into functional digital solutions. We combine technical expertise with creative problem-solving to deliver exceptional results for our clients.</p>
+                        <p>Our mission is to empower businesses and individuals through technology, providing cutting-edge solutions that drive growth, efficiency, and competitive advantage.</p>
+                        
+                        <div class="skill-bars mt-4">
+                            <div class="skill-bar">
+                                <div class="skill-name">Software Development</div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 95%" aria-valuenow="95" aria-valuemin="0" aria-valuemax="100">95%</div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-bar">
+                                <div class="skill-name">AI & Machine Learning</div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 90%" aria-valuenow="90" aria-valuemin="0" aria-valuemax="100">90%</div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-bar">
+                                <div class="skill-name">Network Solutions</div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 85%" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100">85%</div>
+                                </div>
+                            </div>
+                            
+                            <div class="skill-bar">
+                                <div class="skill-name">Research & Innovation</div>
+                                <div class="progress">
+                                    <div class="progress-bar" role="progressbar" style="width: 92%" aria-valuenow="92" aria-valuemin="0" aria-valuemax="100">92%</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="projects-section section-padding" id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Projects</h2>
+                <p>Explore our portfolio of successfully delivered projects</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="https://placehold.co/400x300/3498db/ffffff" alt="TMCS MUST Project">
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Web Application</span>
+                            <h4>TMCS MUST</h4>
+                            <p>A comprehensive teaching management system for Mbeya University with advanced features for educators and students.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="https://placehold.co/400x300/2c3e50/ffffff" alt="AI Microscope Project">
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">AI/ML</span>
+                            <h4>AI-Powered Microscope</h4>
+                            <p>Malaria detection system using machine learning and image processing to improve diagnostic accuracy in healthcare settings.</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="project-card">
+                        <div class="project-img">
+                            <img src="https://placehold.co/400x300/e74c3c/ffffff" alt="StaboFarm Project">
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Web Platform</span>
+                            <h4>StaboFarm Platform</h4>
+                            <p>Digital platform connecting farmers with markets and resources to enhance agricultural productivity and market access.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-4">
+                <a href="{% url 'project_list' %}" class="btn btn-primary">View More Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Research Section -->
+    <section class="research-section section-padding" id="research">
+        <div class="container">
+            <div class="section-title">
+                <h2>Research Publications</h2>
+                <p>Our contributions to academic and industry research</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="research-card">
+                        <div class="research-icon">
+                            <i class="fas fa-file-medical"></i>
+                        </div>
+                        <h4>AI in Healthcare Diagnostics</h4>
+                        <p>Machine learning approaches for early disease detection in resource-limited settings with practical implementation strategies.</p>
+                        <a href="#" class="pricing-btn">Read Paper</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="research-card">
+                        <div class="research-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
+                        <h4>Sentiment Analysis in Finance</h4>
+                        <p>Evaluating customer satisfaction through NLP techniques in banking applications and financial service platforms.</p>
+                        <a href="#" class="pricing-btn">Read Paper</a>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="research-card">
+                        <div class="research-icon">
+                            <i class="fas fa-seedling"></i>
+                        </div>
+                        <h4>IoT for Agricultural Innovation</h4>
+                        <p>Smart farming solutions using sensor networks and data analytics to improve crop yield and resource management.</p>
+                        <a href="#" class="pricing-btn">Read Paper</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="text-center mt-4">
+                <a href="{% url 'research_list' %}" class="btn btn-primary">View More Research Papers</a>
+            </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="team-section section-padding" id="team">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Team</h2>
+                <p>Meet the talented professionals behind Dative Technologies</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="team-card">
+                        <div class="team-img">
+                            <img src="https://placehold.co/400x500/3498db/ffffff" alt="Datius Daud">
+                        </div>
+                        <div class="team-content">
+                            <h4>Datius Daud</h4>
+                            <p>Founder & Lead Developer</p>
+                            <p>Software Engineer and AI/ML Specialist with expertise in building innovative solutions.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-github"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="team-card">
+                        <div class="team-img">
+                            <img src="https://placehold.co/400x500/2c3e50/ffffff" alt="Network Specialist">
+                        </div>
+                        <div class="team-content">
+                            <h4>Michael Johnson</h4>
+                            <p>Network Solutions Engineer</p>
+                            <p>CCNA Certified network specialist with expertise in security and infrastructure design.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-twitter"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-4 col-md-6">
+                    <div class="team-card">
+                        <div class="team-img">
+                            <img src="https://placehold.co/400x500/e74c3c/ffffff" alt="UI/UX Designer">
+                        </div>
+                        <div class="team-content">
+                            <h4>Sarah Williams</h4>
+                            <p>UI/UX Designer</p>
+                            <p>Creative designer specializing in user experience and product interface design.</p>
+                            <div class="team-social">
+                                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                                <a href="#"><i class="fab fa-dribbble"></i></a>
+                                <a href="#"><i class="fas fa-envelope"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section section-padding" id="pricing">
+        <div class="container">
+            <div class="section-title">
+                <h2>Our Pricing Packages</h2>
+                <p>Transparent pricing for all our IT solutions and research services</p>
+            </div>
+            
+            <div class="pricing-tabs">
+                <button class="pricing-tab active" data-tab="development">Development Services</button>
+                <button class="pricing-tab" data-tab="research">Research Papers</button>
+                <button class="pricing-tab" data-tab="network">Network Solutions</button>
+            </div>
+            
+            <div class="tab-content">
+                <!-- Development Services -->
+                <div class="tab-pane active" id="development-tab">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pricing-card">
+                                <div class="pricing-header">
+                                    <h4>Basic Website</h4>
+                                    <div class="price">
+                                        <span class="currency">TZS</span>500,000
+                                        <span class="period">/project</span>
+                                    </div>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> Up to 5 pages</li>
+                                    <li><i class="fas fa-check"></i> Responsive design</li>
+                                    <li><i class="fas fa-check"></i> Contact form</li>
+                                    <li><i class="fas fa-check"></i> Basic SEO</li>
+                                    <li><i class="fas fa-check"></i> 1 month support</li>
+                                </ul>
+                                <div class="pricing-footer">
+                                    <a href="#contact" class="pricing-btn">Get Started</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pricing-card featured">
+                                <div class="pricing-header">
+                                    <h4>Web Application</h4>
+                                    <div class="price">
+                                        <span class="currency">TZS</span>1,500,000
+                                        <span class="period">/project</span>
+                                    </div>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> Custom functionality</li>
+                                    <li><i class="fas fa-check"></i> Database integration</li>
+                                    <li><i class="fas fa-check"></i> User authentication</li>
+                                    <li><i class="fas fa-check"></i> Admin dashboard</li>
+                                    <li><i class="fas fa-check"></i> 3 months support</li>
+                                </ul>
+                                <div class="pricing-footer">
+                                    <a href="#contact" class="pricing-btn">Get Started</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pricing-card">
+                                <div class="pricing-header">
+                                    <h4>E-Commerce Solution</h4>
+                                    <div class="price">
+                                        <span class="currency">TZS</span>2,500,000
+                                        <span class="period">/project</span>
+                                    </div>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> Product catalog</li>
+                                    <li><i class="fas fa-check"></i> Payment integration</li>
+                                    <li><i class="fas fa-check"></i> Shopping cart</li>
+                                    <li><i class="fas fa-check"></i> Order management</li>
+                                    <li><i class="fas fa-check"></i> 6 months support</li>
+                                </ul>
+                                <div class="pricing-footer">
+                                    <a href="#contact" class="pricing-btn">Get Started</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research Papers -->
+                <div class="tab-pane" id="research-tab" style="display: none;">
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="pricing-card">
+                                <div class="pricing-header">
+                                    <h4>Research Paper (Client as Author)</h4>
+                                    <div class="price">
+                                        <span class="currency">TZS</span>2,000,000
+                                        <span class="period">/paper</span>
+                                    </div>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> Literature review</li>
+                                    <li><i class="fas fa-check"></i> Data collection & analysis</li>
+                                    <li><i class="fas fa-check"></i> Full paper writing</li>
+                                    <li><i class="fas fa-check"></i> Technical reviews</li>
+                                    <li><i class="fas fa-check"></i> Formatting & editing</li>
+                                    <li><i class="fas fa-times" style="color: #e74c3c;"></i> Publishing costs not included</li>
+                                </ul>
+                                <div class="pricing-footer">
+                                    <a href="#contact" class="pricing-btn">Get Started</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-6 col-md-6">
+                            <div class="pricing-card featured">
+                                <div class="pricing-header">
+                                    <h4>Research Paper (Co-Authorship)</h4>
+                                    <div class="price">
+                                        <span class="currency">TZS</span>1,000,000
+                                        <span class="period">/paper</span>
+                                    </div>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> Literature review</li>
+                                    <li><i class="fas fa-check"></i> Data collection & analysis</li>
+                                    <li><i class="fas fa-check"></i> Full paper writing</li>
+                                    <li><i class="fas fa-check"></i> Technical reviews</li>
+                                    <li><i class="fas fa-check"></i> Dative as co-author</li>
+                                    <li><i class="fas fa-times" style="color: #e74c3c;"></i> Publishing costs not included</li>
+                                </ul>
+                                <div class="pricing-footer">
+                                    <a href="#contact" class="pricing-btn">Get Started</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="research-note">
+                        <p><strong>Note:</strong> Publishing costs are not included in our research paper packages. We can assist with journal selection and submission process at an additional cost.</p>
+                    </div>
+                </div>
+                
+                <!-- Network Solutions -->
+                <div class="tab-pane" id="network-tab" style="display: none;">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pricing-card">
+                                <div class="pricing-header">
+                                    <h4>Small Office Network</h4>
+                                    <div class="price">
+                                        <span class="currency">TZS</span>1,200,000
+                                        <span class="period">/installation</span>
+                                    </div>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> Up to 10 devices</li>
+                                    <li><i class="fas fa-check"></i> Router configuration</li>
+                                    <li><i class="fas fa-check"></i> Basic switch setup</li>
+                                    <li><i class="fas fa-check"></i> Wireless access points</li>
+                                    <li><i class="fas fa-check"></i> 3 months support</li>
+                                </ul>
+                                <div class="pricing-footer">
+                                    <a href="#contact" class="pricing-btn">Get Started</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pricing-card featured">
+                                <div class="pricing-header">
+                                    <h4>Business Network</h4>
+                                    <div class="price">
+                                        <span class="currency">TZS</span>2,500,000
+                                        <span class="period">/installation</span>
+                                    </div>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> Up to 25 devices</li>
+                                    <li><i class="fas fa-check"></i> Advanced router setup</li>
+                                    <li><i class="fas fa-check"></i> Managed switch</li>
+                                    <li><i class="fas fa-check"></i> Network security</li>
+                                    <li><i class="fas fa-check"></i> 6 months support</li>
+                                </ul>
+                                <div class="pricing-footer">
+                                    <a href="#contact" class="pricing-btn">Get Started</a>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-lg-4 col-md-6">
+                            <div class="pricing-card">
+                                <div class="pricing-header">
+                                    <h4>Enterprise Network</h4>
+                                    <div class="price">
+                                        <span class="currency">TZS</span>4,500,000+
+                                        <span class="period">/installation</span>
+                                    </div>
+                                </div>
+                                <ul class="pricing-features">
+                                    <li><i class="fas fa-check"></i> 50+ devices</li>
+                                    <li><i class="fas fa-check"></i> Multi-location setup</li>
+                                    <li><i class="fas fa-check"></i> Advanced security</li>
+                                    <li><i class="fas fa-check"></i> Server configuration</li>
+                                    <li><i class="fas fa-check"></i> 12 months support</li>
+                                </ul>
+                                <div class="pricing-footer">
+                                    <a href="#contact" class="pricing-btn">Get Started</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="custom-project">
+                <h4>Have a custom project in mind?</h4>
+                <p>Contact us for a personalized quote tailored to your specific requirements.</p>
+                <a href="#contact" class="pricing-btn">Request Custom Quote</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+<!-- Contact Section -->
+<section class="contact-section section-padding" id="contact">
+    <div class="container">
+        <div class="section-title">
+            <h2>Contact Us</h2>
+            <p>Get in touch with us for any inquiries or project discussions</p>
+        </div>
+        
+        <!-- Display messages -->
+        {% if messages %}
+        <div class="row justify-content-center mb-4">
+            <div class="col-lg-8">
+                {% for message in messages %}
+                <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+        
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="contact-form">
+                    <form method="post" action="{% url 'index' %}#contact">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="name" placeholder="Your Name*" required>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="email" class="form-control" name="email" placeholder="Your Email*" required>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" name="company" placeholder="Your Company">
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <input type="tel" class="form-control" name="phone" placeholder="Your Phone">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="subject" placeholder="Subject*" required>
+                        </div>
+                        <div class="form-group">
+                            <select class="form-control" name="service">
+                                <option value="">Select Service (Optional)</option>
+                                <option value="web-development">Web Development</option>
+                                <option value="software">Software Development</option>
+                                <option value="ai-ml">AI & Machine Learning</option>
+                                <option value="mobile">Mobile Apps</option>
+                                <option value="network">Network Solutions</option>
+                                <option value="research">Research & Development</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" name="message" rows="5" placeholder="Your Message*" required></textarea>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" class="form-control" name="budget" placeholder="Estimated Budget (Optional)">
+                        </div>
+                        <button type="submit" class="btn btn-primary w-100">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock content %}

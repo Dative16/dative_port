@@ -1,0 +1,455 @@
+{% extends "main/main.html" %}
+{% load static %}
+{% block content %}
+    <style>
+        .projects-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .projects-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .projects-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .projects-filter {
+            padding: 30px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            background: white;
+            border: 2px solid #3498db;
+            color: #3498db;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: #3498db;
+            color: white;
+        }
+        
+        .projects-grid {
+            padding: 50px 0;
+        }
+        
+        .project-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .project-img {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+        
+        .project-card:hover .project-img img {
+            transform: scale(1.1);
+        }
+        
+        .project-content {
+            padding: 20px;
+        }
+        
+        .project-tag {
+            display: inline-block;
+            background-color: #ecf0f1;
+            color: #3498db;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .project-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+        
+        .project-excerpt {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .project-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        /* Modal Styles */
+        .project-modal .modal-content {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .modal-header {
+            background: #2c3e50;
+            color: white;
+            border-bottom: none;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .modal-project-img {
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-tech-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-tech-list li {
+            background: #ecf0f1;
+            color: #3498db;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+        }
+        
+        .modal-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .modal-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 20px;
+            background: #3498db;
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .modal-links a:hover {
+            background: #2c3e50;
+            transform: translateY(-3px);
+        }
+        
+        .modal-links a i {
+            margin-right: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .projects-header {
+                padding: 60px 0;
+            }
+            
+            .projects-header h1 {
+                font-size: 2rem;
+            }
+            
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 200px;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+    <!-- Projects Header -->
+    <section class="projects-header">
+        <div class="container">
+            <h1>Our Projects</h1>
+            <p>Explore our portfolio of successfully delivered projects across various industries and technologies</p>
+        </div>
+    </section>
+    
+    <!-- Projects Filter -->
+    <section class="projects-filter">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Projects</button>
+                <button class="filter-btn" data-filter="web">Web Development</button>
+                <button class="filter-btn" data-filter="mobile">Mobile Apps</button>
+                <button class="filter-btn" data-filter="ai">AI/ML</button>
+                <button class="filter-btn" data-filter="network">Network Solutions</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Projects Grid -->
+    <section class="projects-grid">
+        <div class="container">
+            <div class="row">
+                <!-- Project 1 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="web">
+                    <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal1">
+                        <div class="project-img">
+                            <img src="https://placehold.co/600x400/3498db/ffffff" alt="TMCS MUST Project">
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Web Application</span>
+                            <h3 class="project-title">TMCS MUST</h3>
+                            <p class="project-excerpt">A comprehensive teaching management system for Mbeya University with advanced features for educators and students.</p>
+                            <div class="project-meta">
+                                <span>Completed: Sep 2024</span>
+                                <span>Education</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="ai">
+                    <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal2">
+                        <div class="project-img">
+                            <img src="https://placehold.co/600x400/2c3e50/ffffff" alt="AI Microscope Project">
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">AI/ML</span>
+                            <h3 class="project-title">AI-Powered Microscope</h3>
+                            <p class="project-excerpt">Malaria detection system using machine learning and image processing to improve diagnostic accuracy.</p>
+                            <div class="project-meta">
+                                <span>Completed: Jun 2025</span>
+                                <span>Healthcare</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="web">
+                    <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal3">
+                        <div class="project-img">
+                            <img src="https://placehold.co/600x400/e74c3c/ffffff" alt="StaboFarm Project">
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Web Platform</span>
+                            <h3 class="project-title">StaboFarm Platform</h3>
+                            <p class="project-excerpt">Digital platform connecting farmers with markets and resources to enhance agricultural productivity.</p>
+                            <div class="project-meta">
+                                <span>Completed: May 2025</span>
+                                <span>Agriculture</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="ai">
+                    <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal4">
+                        <div class="project-img">
+                            <img src="https://placehold.co/600x400/3498db/ffffff" alt="Sentiment Analysis Project">
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Data Science</span>
+                            <h3 class="project-title">Sentiment Analysis System</h3>
+                            <p class="project-excerpt">Customer feedback analysis for CRDB & M-PESA services using natural language processing.</p>
+                            <div class="project-meta">
+                                <span>Completed: May 2025</span>
+                                <span>Finance</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 5 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="web">
+                    <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal5">
+                        <div class="project-img">
+                            <img src="https://placehold.co/600x400/2c3e50/ffffff" alt="ELEXA System">
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Software Development</span>
+                            <h3 class="project-title">ELEXA System</h3>
+                            <p class="project-excerpt">Electronic examination archive and management system for educational institutions.</p>
+                            <div class="project-meta">
+                                <span>Completed: Jun 2025</span>
+                                <span>Education</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 6 -->
+                <div class="col-lg-4 col-md-6 mb-4" data-category="mobile">
+                    <div class="project-card" data-bs-toggle="modal" data-bs-target="#projectModal6">
+                        <div class="project-img">
+                            <img src="https://placehold.co/600x400/e74c3c/ffffff" alt="Health Education App">
+                        </div>
+                        <div class="project-content">
+                            <span class="project-tag">Mobile App</span>
+                            <h3 class="project-title">HELP Mobile App</h3>
+                            <p class="project-excerpt">Health Education Learning Portal mobile application for remote areas.</p>
+                            <div class="project-meta">
+                                <span>Completed: Jul 2025</span>
+                                <span>Healthcare</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Project Modals -->
+    
+    <!-- Modal 1 -->
+    <div class="modal fade project-modal" id="projectModal1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">TMCS MUST - Teaching Management System</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://placehold.co/800x400/3498db/ffffff" alt="TMCS MUST Project" class="img-fluid modal-project-img">
+                    <p class="mb-4">A comprehensive teaching management system developed for Mbeya University of Science and Technology. The system streamlines course management, student enrollment, grading, and communication between faculty and students.</p>
+                    
+                    <h6>Technologies Used</h6>
+                    <ul class="modal-tech-list">
+                        <li>Django</li>
+                        <li>React.js</li>
+                        <li>PostgreSQL</li>
+                        <li>Bootstrap</li>
+                        <li>REST API</li>
+                    </ul>
+                    
+                    <h6>Key Features</h6>
+                    <ul>
+                        <li>Course and curriculum management</li>
+                        <li>Student enrollment and registration</li>
+                        <li>Automated grading system</li>
+                        <li>Faculty and student portals</li>
+                        <li>Real-time notifications</li>
+                        <li>Reporting and analytics</li>
+                    </ul>
+                    
+                    <div class="modal-links">
+                        <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                        <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 2 -->
+    <div class="modal fade project-modal" id="projectModal2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">AI-Powered Microscope for Malaria Detection</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="https://placehold.co/800x400/2c3e50/ffffff" alt="AI Microscope Project" class="img-fluid modal-project-img">
+                    <p class="mb-4">An innovative solution that combines hardware and software to automate malaria diagnosis. The system uses a custom-built microscope with a digital camera attachment and machine learning algorithms to detect and count malaria parasites in blood samples.</p>
+                    
+                    <h6>Technologies Used</h6>
+                    <ul class="modal-tech-list">
+                        <li>Python</li>
+                        <li>TensorFlow</li>
+                        <li>OpenCV</li>
+                        <li>Raspberry Pi</li>
+                        <li>Flask</li>
+                    </ul>
+                    
+                    <h6>Key Features</h6>
+                    <ul>
+                        <li>Automated parasite detection and counting</li>
+                        <li>Web-based interface for technicians</li>
+                        <li>Patient record management</li>
+                        <li>Statistical reporting</li>
+                        <li>High accuracy (95%+) in detection</li>
+                    </ul>
+                    
+                    <div class="modal-links">
+                        <a href="#" target="_blank"><i class="fas fa-file-pdf"></i> Research Paper</a>
+                        <a href="#" target="_blank"><i class="fab fa-github"></i> GitHub Repository</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add similar modals for other projects -->
+    
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const projectCards = document.querySelectorAll('.project-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    projectCards.forEach(card => {
+                        const category = card.parentElement.getAttribute('data-category');
+                        
+                        if (filterValue === 'all' || filterValue === category) {
+                            card.parentElement.style.display = 'block';
+                        } else {
+                            card.parentElement.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+
+{% endblock content %}

@@ -1,0 +1,476 @@
+{% extends "main/main.html" %}
+{% load static %}
+{% block content %}
+
+    <style>
+        .research-header {
+            background: linear-gradient(135deg, #2c3e50 0%, #3498db 100%);
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+        }
+        
+        .research-header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        
+        .research-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .research-filter {
+            padding: 30px 0;
+            background-color: #f8f9fa;
+        }
+        
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .filter-btn {
+            background: white;
+            border: 2px solid #3498db;
+            color: #3498db;
+            padding: 8px 20px;
+            border-radius: 30px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .filter-btn.active, .filter-btn:hover {
+            background: #3498db;
+            color: white;
+        }
+        
+        .research-list {
+            padding: 50px 0;
+        }
+        
+        .research-card {
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s ease;
+            margin-bottom: 30px;
+            cursor: pointer;
+        }
+        
+        .research-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        
+        .research-content {
+            padding: 25px;
+        }
+        
+        .research-tag {
+            display: inline-block;
+            background-color: #ecf0f1;
+            color: #3498db;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+        
+        .research-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        .research-authors {
+            color: #666;
+            margin-bottom: 15px;
+            font-style: italic;
+        }
+        
+        .research-excerpt {
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .research-meta {
+            display: flex;
+            justify-content: space-between;
+            color: #888;
+            font-size: 0.9rem;
+        }
+        
+        /* Modal Styles */
+        .research-modal .modal-content {
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .modal-header {
+            background: #2c3e50;
+            color: white;
+            border-bottom: none;
+        }
+        
+        .modal-body {
+            padding: 30px;
+        }
+        
+        .modal-abstract {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-details {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        
+        .modal-detail-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .detail-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 5px;
+        }
+        
+        .detail-value {
+            font-weight: 600;
+            color: #2c3e50;
+        }
+        
+        .modal-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .modal-links a {
+            display: inline-flex;
+            align-items: center;
+            padding: 8px 20px;
+            background: #3498db;
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .modal-links a:hover {
+            background: #2c3e50;
+            transform: translateY(-3px);
+        }
+        
+        .modal-links a i {
+            margin-right: 8px;
+        }
+        
+        @media (max-width: 768px) {
+            .research-header {
+                padding: 60px 0;
+            }
+            
+            .research-header h1 {
+                font-size: 2rem;
+            }
+            
+            .filter-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .filter-btn {
+                width: 200px;
+                margin-bottom: 10px;
+            }
+            
+            .modal-details {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+
+    <!-- Research Header -->
+    <section class="research-header">
+        <div class="container">
+            <h1>Research Publications</h1>
+            <p>Our contributions to academic and industry research in technology and innovation</p>
+        </div>
+    </section>
+    
+    <!-- Research Filter -->
+    <section class="research-filter">
+        <div class="container">
+            <div class="filter-buttons">
+                <button class="filter-btn active" data-filter="all">All Research</button>
+                <button class="filter-btn" data-filter="ai">AI & Machine Learning</button>
+                <button class="filter-btn" data-filter="health">Healthcare</button>
+                <button class="filter-btn" data-filter="finance">Finance</button>
+                <button class="filter-btn" data-filter="agriculture">Agriculture</button>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Research List -->
+    <section class="research-list">
+        <div class="container">
+            <div class="row">
+                <!-- Research 1 -->
+                <div class="col-lg-6 mb-4" data-category="ai health">
+                    <div class="research-card" data-bs-toggle="modal" data-bs-target="#researchModal1">
+                        <div class="research-content">
+                            <span class="research-tag">AI/ML • Healthcare</span>
+                            <h3 class="research-title">AI in Healthcare Diagnostics: Machine Learning Approaches for Disease Detection</h3>
+                            <p class="research-authors">Datius Daud, Dr. Benstone, Dr. Adam Kilungu</p>
+                            <p class="research-excerpt">This paper explores machine learning approaches for early disease detection in resource-limited settings with practical implementation strategies.</p>
+                            <div class="research-meta">
+                                <span>Published: Jan 2024</span>
+                                <span>Journal of Medical AI</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research 2 -->
+                <div class="col-lg-6 mb-4" data-category="finance">
+                    <div class="research-card" data-bs-toggle="modal" data-bs-target="#researchModal2">
+                        <div class="research-content">
+                            <span class="research-tag">Data Science • Finance</span>
+                            <h3 class="research-title">Sentiment Analysis in Financial Services: Evaluating Customer Satisfaction through NLP</h3>
+                            <p class="research-authors">Datius Daud, Rashidi M., Prof. Johnson</p>
+                            <p class="research-excerpt">Evaluating customer satisfaction through NLP techniques in banking applications and financial service platforms.</p>
+                            <div class="research-meta">
+                                <span>Published: Mar 2024</span>
+                                <span>Financial Technology Journal</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research 3 -->
+                <div class="col-lg-6 mb-4" data-category="agriculture">
+                    <div class="research-card" data-bs-toggle="modal" data-bs-target="#researchModal3">
+                        <div class="research-content">
+                            <span class="research-tag">IoT • Agriculture</span>
+                            <h3 class="research-title">IoT for Agricultural Innovation: Smart Farming Solutions Using Sensor Networks</h3>
+                            <p class="research-authors">Datius Daud, Dr. Mwita, Sarah Williams</p>
+                            <p class="research-excerpt">Smart farming solutions using sensor networks and data analytics to improve crop yield and resource management.</p>
+                            <div class="research-meta">
+                                <span>Published: May 2024</span>
+                                <span>Agricultural Technology Review</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research 4 -->
+                <div class="col-lg-6 mb-4" data-category="ai">
+                    <div class="research-card" data-bs-toggle="modal" data-bs-target="#researchModal4">
+                        <div class="research-content">
+                            <span class="research-tag">AI/ML • Computer Vision</span>
+                            <h3 class="research-title">Advanced Image Processing Techniques for Medical Diagnostics</h3>
+                            <p class="research-authors">Datius Daud, Dr. Benstone, Michael Johnson</p>
+                            <p class="research-excerpt">Novel approaches to image processing for improved accuracy in medical diagnostics applications.</p>
+                            <div class="research-meta">
+                                <span>Published: Jul 2024</span>
+                                <span>Journal of Medical Imaging</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research 5 -->
+                <div class="col-lg-6 mb-4" data-category="finance">
+                    <div class="research-card" data-bs-toggle="modal" data-bs-target="#researchModal5">
+                        <div class="research-content">
+                            <span class="research-tag">Data Analytics • Finance</span>
+                            <h3 class="research-title">Predictive Analytics for Financial Risk Assessment in Emerging Markets</h3>
+                            <p class="research-authors">Rashidi M., Datius Daud, Prof. Mwita</p>
+                            <p class="research-excerpt">Applying predictive analytics models to assess financial risks in emerging market contexts.</p>
+                            <div class="research-meta">
+                                <span>Published: Aug 2024</span>
+                                <span>Emerging Markets Finance Review</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Research 6 -->
+                <div class="col-lg-6 mb-4" data-category="health">
+                    <div class="research-card" data-bs-toggle="modal" data-bs-target="#researchModal6">
+                        <div class="research-content">
+                            <span class="research-tag">Healthcare • Technology</span>
+                            <h3 class="research-title">Telemedicine Platforms for Remote Areas: Challenges and Solutions</h3>
+                            <p class="research-authors">Dr. Adam Kilungu, Datius Daud, Sarah Williams</p>
+                            <p class="research-excerpt">Examining the implementation challenges and technological solutions for telemedicine in remote areas.</p>
+                            <div class="research-meta">
+                                <span>Published: Oct 2024</span>
+                                <span>Global Health Technology</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Research Modals -->
+    
+    <!-- Modal 1 -->
+    <div class="modal fade research-modal" id="researchModal1" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">AI in Healthcare Diagnostics: Machine Learning Approaches for Disease Detection</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-details">
+                        <div class="modal-detail-item">
+                            <span class="detail-label">Authors</span>
+                            <span class="detail-value">Datius Daud, Dr. Benstone, Dr. Adam Kilungu</span>
+                        </div>
+                        <div class="modal-detail-item">
+                            <span class="detail-label">Publication Date</span>
+                            <span class="detail-value">January 15, 2024</span>
+                        </div>
+                        <div class="modal-detail-item">
+                            <span class="detail-label">Journal</span>
+                            <span class="detail-value">Journal of Medical AI</span>
+                        </div>
+                        <div class="modal-detail-item">
+                            <span class="detail-label">Volume/Issue</span>
+                            <span class="detail-value">Vol. 12, Issue 3</span>
+                        </div>
+                        <div class="modal-detail-item">
+                            <span class="detail-label">DOI</span>
+                            <span class="detail-value">10.1016/j.jmai.2024.01.015</span>
+                        </div>
+                        <div class="modal-detail-item">
+                            <span class="detail-label">Pages</span>
+                            <span class="detail-value">215-230</span>
+                        </div>
+                    </div>
+                    
+                    <h6>Abstract</h6>
+                    <div class="modal-abstract">
+                        <p>This paper explores machine learning approaches for early disease detection in resource-limited settings. We present a comprehensive analysis of various ML algorithms applied to medical diagnostics, with a focus on implementations that can function effectively with limited computational resources. Our research includes case studies on malaria detection, tuberculosis screening, and early diabetes prediction, demonstrating how AI can augment traditional diagnostic methods while reducing costs and improving accessibility. The paper also discusses the challenges of implementing AI solutions in low-resource settings and proposes frameworks for overcoming these barriers.</p>
+                    </div>
+                    
+                    <h6>Keywords</h6>
+                    <p>Artificial Intelligence, Machine Learning, Healthcare Diagnostics, Disease Detection, Resource-Limited Settings, Medical Imaging</p>
+                    
+                    <div class="modal-links">
+                        <a href="#" target="_blank"><i class="fas fa-file-pdf"></i> Download PDF</a>
+                        <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> View Online</a>
+                        <a href="#" target="_blank"><i class="fas fa-quote-right"></i> Cite</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Modal 2 -->
+    <div class="modal fade research-modal" id="researchModal2" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sentiment Analysis in Financial Services: Evaluating Customer Satisfaction through NLP</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="modal-details">
+                        <div class="modal-detail-item">
+                            <span class="detail-label">Authors</span>
+                            <span class="detail-value">Datius Daud, Rashidi M., Prof. Johnson</span>
+                        </div>
+                        <div class="modal-detail-item">
+                            <span class="detail-label">Publication Date</span>
+                            <span class="detail-value">March 22, 2024</span>
+                        </div>
+                        <div class="modal-detail-item">
+                            <span class="detail-label">Journal</span>
+                            <span class="detail-value">Financial Technology Journal</span>
+                        </div>
+                        <div class="modal-detail-item">
+                            <span class="detail-label">Volume/Issue</span>
+                            <span class="detail-value">Vol. 8, Issue 2</span>
+                        </div>
+                        <div class="modal-detail-item">
+                            <span class="detail-label">DOI</span>
+                            <span class="detail-value">10.1016/j.fintech.2024.02.008</span>
+                        </div>
+                        <div class="modal-detail-item">
+                            <span class="detail-label">Pages</span>
+                            <span class="detail-value">145-162</span>
+                        </div>
+                    </div>
+                    
+                    <h6>Abstract</h6>
+                    <div class="modal-abstract">
+                        <p>This study examines the application of natural language processing techniques for sentiment analysis in financial services, specifically focusing on customer feedback for banking applications and financial service platforms. We developed and compared multiple NLP models for analyzing customer reviews from app stores, social media, and support channels. Our research demonstrates how sentiment analysis can provide actionable insights for improving customer experience, identifying pain points in digital banking services, and predicting customer churn. The paper also introduces a novel approach for handling financial jargon and context-specific language in sentiment classification.</p>
+                    </div>
+                    
+                    <h6>Keywords</h6>
+                    <p>Sentiment Analysis, Natural Language Processing, Financial Services, Customer Satisfaction, FinTech, Digital Banking</p>
+                    
+                    <div class="modal-links">
+                        <a href="#" target="_blank"><i class="fas fa-file-pdf"></i> Download PDF</a>
+                        <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> View Online</a>
+                        <a href="#" target="_blank"><i class="fas fa-quote-right"></i> Cite</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Add similar modals for other research papers -->
+    
+    <script>
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const filterButtons = document.querySelectorAll('.filter-btn');
+            const researchCards = document.querySelectorAll('.research-card');
+            
+            filterButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    // Remove active class from all buttons
+                    filterButtons.forEach(btn => btn.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    this.classList.add('active');
+                    
+                    const filterValue = this.getAttribute('data-filter');
+                    
+                    researchCards.forEach(card => {
+                        const categories = card.parentElement.getAttribute('data-category').split(' ');
+                        
+                        if (filterValue === 'all' || categories.includes(filterValue)) {
+                            card.parentElement.style.display = 'block';
+                        } else {
+                            card.parentElement.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+
+
+{% endblock content %}
